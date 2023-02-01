@@ -1,0 +1,51 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.4'
+	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'java'
+}
+
+group = 'com.szs'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// lombok
+	implementation 'org.projectlombok:lombok'
+	// swagger 
+	//implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	//implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    // Spring Security + JWT
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	//implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	//implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	//implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	// gson
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	// h2db
+	//runtimeOnly 'com.h2database:h2'
+    compileOnly 'org.springframework.boot:spring-boot-devtools'
+	// test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	runtimeOnly 'mysql:mysql-connector-java'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
